@@ -27,8 +27,7 @@ function App() {
   return (
     <div>
       <div 
-      style={ isBoxVisible === true ? {display: "block"} : {display: "none"} } 
-      className="box">
+      className={`box box${isBoxVisible ? "--show" : "--hide"}`}>
         {/* <button onClick={hide}>Close</button> */}
       </div>
       <button onClick={show}>Show</button> 

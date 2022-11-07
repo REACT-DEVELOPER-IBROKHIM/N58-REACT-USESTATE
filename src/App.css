@@ -3,3 +3,11 @@
   height: 200px;
   background-color: red;
 }
+
+.box--hide{
+  display: none;
+}
+
+.box--show{
+  display: block;
+}
