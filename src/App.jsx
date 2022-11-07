@@ -2,43 +2,36 @@
 // useEffect
 // useRef
 // react-router
-import audio from './assets/alarm.mp3';
+import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const alarm = new Audio(audio);
-  const btnStyle = {
-    padding: "10px 30px", 
-    margin: "0 30px", 
-    fontSize: "20px"
+  const [isBoxVisible, setIsBoxVisible] = useState(false);
+  
+  function show(){
+    setIsBoxVisible(!isBoxVisible)
+    // setIsBoxVisible(true);
+    // if(isBoxVisible === true){
+    //   setIsBoxVisible(false)
+    // }
+    // else{
+    //   setIsBoxVisible(true)
+    // }
   }
 
-  const [result, setResult] = useState(0); //react ni hook
-  // set => o'rnatish
-  console.log(result)
-  function increment(){
-    setResult(result + 1)
-  }
+  // function hide(){
+  //   setIsBoxVisible(false)
+  // }
 
-  function decrement(){
-    setResult(result - 1)
-  }
-
-  (() => {
-      if(result % 33 === 0 && result > 0){
-        alarm.play()
-        setTimeout(() => {
-          alarm.pause();
-        }, 5000)
-      }
-    }
-  )()
 
   return (
-    <div style={{display: "flex"}}>
-      <button onClick={decrement} style={btnStyle}>-</button>
-      <h1>Count: { result }</h1>
-      <button onClick={increment} style={btnStyle}>+</button>
+    <div>
+      <div 
+      style={ isBoxVisible === true ? {display: "block"} : {display: "none"} } 
+      className="box">
+        {/* <button onClick={hide}>Close</button> */}
+      </div>
+      <button onClick={show}>Show</button> 
     </div>
   );
 }
