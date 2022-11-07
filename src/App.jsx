@@ -3,34 +3,32 @@
 // useRef
 // react-router
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [isBoxVisible, setIsBoxVisible] = useState(false);
-  
-  function show(){
-    setIsBoxVisible(!isBoxVisible)
-    // setIsBoxVisible(true);
-    // if(isBoxVisible === true){
-    //   setIsBoxVisible(false)
-    // }
-    // else{
-    //   setIsBoxVisible(true)
-    // }
-  }
+  // useEffect
+  const [userData, setUserData] = useState([]);
 
-  // function hide(){
-  //   setIsBoxVisible(false)
-  // }
+  useEffect(() => {
+      fetch("https://reqres.in/api/users")
+        .then(response => response.json())
+        .then(info => setUserData(info.data))
+        .catch(error => console.log(error))
+  }, [])
 
+  console.log(userData)
 
   return (
     <div>
-      <div 
-      className={`box box${isBoxVisible ? "--show" : "--hide"}`}>
-        {/* <button onClick={hide}>Close</button> */}
-      </div>
-      <button onClick={show}>Show</button> 
+      {
+        userData.map(user => 
+          <div>
+              <img src={user.avatar} alt="" />
+              <h3>{user.first_name}</h3>
+              <button>Delete</button>
+          </div>  
+        )
+      }
     </div>
   );
 }
