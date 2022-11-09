@@ -2,33 +2,39 @@
 // useEffect
 // useRef
 // react-router
+import { useState } from "react";
 import "./App.css";
-import { useEffect, useState } from "react";
 
 function App() {
-  // useEffect
-  const [userData, setUserData] = useState([]);
+  const [progressPrecent, setProgressPrecent] = useState(0)
 
-  useEffect(() => {
-      fetch("https://reqres.in/api/users")
-        .then(response => response.json())
-        .then(info => setUserData(info.data))
-        .catch(error => console.log(error))
-  }, [])
+  const fillProgress = () => {
+    if(progressPrecent < 100){
+      setProgressPrecent(progressPrecent + 25)
+    }
+  }
 
-  console.log(userData)
-
+  const unfillProgress = () => {
+    if(progressPrecent > 0){
+      setProgressPrecent(progressPrecent - 25)
+    }
+  }
   return (
     <div>
-      {
-        userData.map(user => 
-          <div>
-              <img src={user.avatar} alt="" />
-              <h3>{user.first_name}</h3>
-              <button>Delete</button>
-          </div>  
-        )
-      }
+      <div className="progress">
+        <div className="milestone-wrapper">
+          {
+            new Array(5).fill("*").map((item, ind) => 
+              <div className="milestone" onClick={() => { setProgressPrecent(ind * 25) }}>{ind + 1}</div>
+            )
+          }
+        </div>
+        <div className="fill" style={{width: `${progressPrecent}%`}}></div>
+      </div>
+      <div className="progress-controller">
+        <button onClick={unfillProgress}>BACK</button>
+        <button onClick={fillProgress}>NEXT</button>
+      </div>
     </div>
   );
 }

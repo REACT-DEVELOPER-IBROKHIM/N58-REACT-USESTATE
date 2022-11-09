@@ -1,13 +1,61 @@
-.box{
-  width: 200px;
-  height: 200px;
-  background-color: red;
+.progress{
+  width: 800px;
+  height: 20px;
+  background-color: #d2d2d2;
+  position: relative;
 }
 
-.box--hide{
-  display: none;
+.fill{
+  width: 0;
+  height: 20px;
+  background-color: dodgerblue;
+  transition: 0.5s;
 }
 
-.box--show{
-  display: block;
+.progress-controller{
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+
+.progress-controller > button{
+  padding: 1rem 1.5rem;
+  background-color: #056ad0;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.progress-controller > button:active{
+  background-color: #0d7ded;
+}
+
+.milestone-wrapper{
+  display: flex;
+  width: 800px;
+  top: -5px;
+  position: absolute;
+  justify-content: space-between;
+}
+
+.milestone{
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 3px solid green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.milestone:first-child{
+  margin-left: -10px;
+}
+
+.milestone:last-child{
+  margin-right: -10px;
 }
